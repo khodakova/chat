@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+
+.button {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 14px;
+  &--large {
+    height: 56px !important;
+  }
+}
