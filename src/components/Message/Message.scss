@@ -1,19 +1,62 @@
 @import "~styles/variables";
 
 .message {
-  display: flex;
-  max-width: 440px;
-  margin-bottom: 15px;
+  $self: &;
+
+  &__content {
+    display: flex;
+    max-width: 440px;
+    margin-bottom: 15px;
+  }
+
+  &__checked-icon {
+    align-self: flex-end;
+    margin-right: 7px;
+
+    img {
+      color: #999999;
+      width: 13px;
+      height: 13px;
+    }
+  }
+
+  &__attachments {
+    display: flex;
+
+    &-item {
+      margin-right: 6px;
+      cursor: pointer;
+
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+      }
+    }
+  }
+
+  &__block {
+    display: flex;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
 
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
+
     img {
       border-radius: 50px;
       width: 33px;
       height: 33px;
       margin-right: 13px;
-      margin-bottom: 18px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 31px;
     }
   }
 
@@ -29,8 +72,50 @@
     font-size: 12px;
     opacity: 0.4;
   }
+
   &__text {
     color: #fff;
     line-height: 20px;
+  }
+
+  &__is_me {
+    display: flex;
+    flex-direction: row-reverse;
+
+    #{$self}__content {
+      flex-direction: row-reverse;
+      margin-bottom: 10px;
+    }
+
+    #{$self}__avatar {
+      img {
+        margin-right: 0;
+        margin-left: 13px;
+      }
+    }
+
+    #{$self}__info {
+      align-items: center;
+      text-align: right;
+    }
+
+    #{$self}__block {
+      display: flex;
+      &-content {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
+
+    #{$self}__bubble {
+      background: #ffffff;
+      border: 1px solid #ececec;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.02);
+      border-radius: 12px 12px 0 12px;
+      order: 2;
+      #{$self}__text {
+        color: $black;
+      }
+    }
   }
 }

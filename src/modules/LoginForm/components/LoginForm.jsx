@@ -56,9 +56,6 @@ class LoginForm extends Component {
               <Checkbox>Запомнить</Checkbox>
             </Form.Item>
 
-            <a className="login-form-forgot" href="">
-              Забыли пароль?
-            </a>
           </Form.Item>
 
           <Form.Item>
