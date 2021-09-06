@@ -1,5 +1,6 @@
 import React from "react";
 import {Form, Input} from "antd";
+import {validateField} from "../../utils/helpers";
 
 const FormField = ({
                      name,
@@ -14,8 +15,8 @@ const FormField = ({
                    }) => {
   return (
     <Form.Item
-      // validateStatus={validateField(name, touched, errors)}
-      help={!touched[name] ? "" : errors[name]}
+      validateStatus={validateField(name, touched, errors)}
+      help={!touched[name] ? null: errors[name]}
       hasFeedback
     >
       <Input

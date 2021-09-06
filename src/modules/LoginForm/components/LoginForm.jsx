@@ -1,65 +1,105 @@
-import React, {Component} from 'react';
-import {Checkbox, Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import React from 'react';
+import {Form, Input} from "antd";
+import {LockOutlined, MailOutlined} from "@ant-design/icons";
 import {Button} from "../../../components";
 import {Link} from "react-router-dom";
 import Block from "../../../components/Block";
+import {validateField} from "../../../utils/helpers";
+import {FastField} from "formik";
+import FormField from "../../../components/FormField";
 
-class LoginForm extends Component {
-  onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+const validate = (key, touched, errors) => {
+  if (touched[key]) {
+    if (errors[key]) {
+      return 'error'
+    } else {
+      return 'success'
+    }
+  } else {
+    return null
+  }
+};
 
-  render() {
-    return (
-      <Block>
-        <div className='auth__title'>
-          <h2>Войти в аккаунт</h2>
-          <p>Пожалуйста, войдите в свой аккаунт</p>
-        </div>
+const LoginForm = (props) =>  {
+  const {
+    values, touched, errors, handleChange, handleBlur, handleSubmit, isValid, isSubmitting
+  } = props;
+  return (
+    <Block>
+      <div className='auth__title'>
+        <h2>Войти в аккаунт</h2>
+        <p>Пожалуйста, войдите в свой аккаунт</p>
+      </div>
         <Form
           name="normal_login"
           className="login-form"
           initialValues={{
             remember: true,
           }}
-          onFinish={this.onFinish}
+          onSubmit={handleSubmit}
         >
+          <FormField
+            name="email"
+            // icon="mail"
+            placeholder="Введите E-Mail"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            touched={touched}
+            errors={errors}
+            values={values}
+          />
+
+          <FormField
+            name="password"
+            // icon="mail"
+            placeholder="Введите пароль"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            touched={touched}
+            errors={errors}
+            values={values}
+          />
           <Form.Item
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите имя пользователя!',
-              },
-            ]}
+            name="email"
+            help={!touched.email ? null : errors.email}
+            validateStatus={
+              validateField('email', touched, errors)
+            }
+            hasFeedback
+            values={values}
+            touched={touched}
+            errors={errors}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Имя пользователя"/>
+            <Input
+              id='email'
+              prefix={<MailOutlined className="site-form-item-icon"/>}
+              placeholder="E-mail"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+            />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите пароль!',
-              },
-            ]}
+            help={!touched.password ? null : errors.password}
+            validateStatus={
+              validateField('password', touched, errors)
+            }
           >
             <Input
+              id='password'
+              name='password'
               prefix={<LockOutlined className="site-form-item-icon"/>}
               type="password"
               placeholder="Пароль"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
             />
           </Form.Item>
           <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Запомнить</Checkbox>
-            </Form.Item>
-
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            {isSubmitting && !isValid && <span>Ошибка!</span>}
+            <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
               Войти в аккаунт
             </Button>
           </Form.Item>
@@ -67,9 +107,8 @@ class LoginForm extends Component {
             <Link to='/registration' className='auth__register-link'>Зарегистрироваться</Link>
           </Form.Item>
         </Form>
-      </Block>
-    );
-  }
+    </Block>
+  );
 }
 
 export default LoginForm;

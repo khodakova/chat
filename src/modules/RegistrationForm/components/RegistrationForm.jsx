@@ -6,11 +6,12 @@ import {Link} from "react-router-dom";
 import Block from "../../../components/Block";
 import InfoCircleOutlined from "@ant-design/icons/lib/icons/InfoCircleOutlined";
 import FormField from "../../../components/FormField";
+import {validateField} from "../../../utils/helpers";
 
 const RegistrationForm = (props) => {
   const success = false;
   const {
-    values, touched, errors, handleChange, handleBlur, handleSubmit, isValid
+    values, touched, errors, handleChange, handleBlur, handleSubmit, isValid, isSubmitting
   } = props;
 
   return (
@@ -30,19 +31,11 @@ const RegistrationForm = (props) => {
         >
           <Form.Item
             name="email"
-            help={!touched.email ? '' :
-              errors.email}
+            help={!touched.email ? null : errors.email}
             validateStatus={
-              !touched.email ? '' :
-                errors.email && touched.email ? 'error' : 'success'
+              validateField('email', touched, errors)
             }
             hasFeedback
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите e-mail!',
-              },
-            ]}
             values={values}
             touched={touched}
             errors={errors}
@@ -58,23 +51,19 @@ const RegistrationForm = (props) => {
           </Form.Item>
           <Form.Item
             name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите имя пользователя!',
-              },
-            ]}
+            help={!touched.name ? null : errors.name}
+            validateStatus={
+              validateField('name', touched, errors)
+            }
           >
             <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Имя пользователя"/>
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите пароль!',
-              },
-            ]}
+            help={!touched.password ? null : errors.password}
+            validateStatus={
+              validateField('password', touched, errors)
+            }
           >
             <Input
               id='password'
@@ -89,12 +78,9 @@ const RegistrationForm = (props) => {
           </Form.Item>
           <Form.Item
             name="confirm_password"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, повторите пароль!',
-              },
-            ]}
+            validateStatus={
+              validateField('confirm_password', touched, errors)
+            }
           >
             <Input
               prefix={<LockOutlined className="site-form-item-icon"/>}
@@ -104,6 +90,7 @@ const RegistrationForm = (props) => {
           </Form.Item>
 
           <Form.Item>
+            {isSubmitting && !isValid && <span>Ошибка!</span>}
             <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
               Зарегистрироваться
             </Button>
