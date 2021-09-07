@@ -8,9 +8,17 @@ import tick from '../../assets/img/tick.svg';
 import checkmark from '../../assets/img/checked.svg';
 import './Message.scss';
 
-const Message = ({avatar, user, text, date, isMe, isRead, attachments}) => {
+const Message = ({avatar, user, text, date, isMe, isRead, attachments, isTyping}) => {
   return (
-    <div className={classNames('message', {'message__is_me': isMe})}>
+    <div className={classNames(
+      'message',
+      {
+        'message__is_me': isMe,
+        'message__is_typing': isTyping,
+        'message__attachments-image': attachments && attachments.length === 1
+      }
+    )}
+    >
       <div className='message__content'>
 
         <div className='message__avatar'>
@@ -26,13 +34,24 @@ const Message = ({avatar, user, text, date, isMe, isRead, attachments}) => {
               </div> : null
             }
             <div className='message__block-content'>
-              <div className='message__bubble'>
-                <p className='message__text'>{text}</p>
-              </div>
+              {(text || isTyping) && (
+                <div className={classNames('message__bubble', {'message__bubble_is-typing': isTyping})}>
+                  {text &&
+                    (<p className='message__text'>{text}</p>)
+                  }
+                  {isTyping &&
+                  (<div className="typing_indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>)
+                  }
+                </div>
+              )}
               <div className='message__attachments'>
                 {attachments &&
                 attachments.map(item => (
-                  <div className='message__attachments-item'>
+                  <div className='message__attachments-item' key={`${item.url}_${item.filename}`}>
                     <img src={item.url} alt={item.filename}/>
                   </div>
                 ))
@@ -41,10 +60,11 @@ const Message = ({avatar, user, text, date, isMe, isRead, attachments}) => {
             </div>
 
           </div>
-
+          {date && (
             <span className='message__date'>
               {distanceInWordsToNow(new Date(date), {addSuffix: true, locale: ruLocale})}
             </span>
+          )}
         </div>
       </div>
     </div>
@@ -60,7 +80,8 @@ Message.propTypes = {
   text: PropTypes.string,
   date: PropTypes.string,
   user: PropTypes.object,
-  attachments: PropTypes.array
+  attachments: PropTypes.array,
+  isTyping: PropTypes.bool
 };
 
 export default Message;

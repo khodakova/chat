@@ -33,7 +33,16 @@
         border-radius: 6px;
       }
     }
+
+    &-image {
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 6px;
+      }
+    }
   }
+
 
   &__block {
     display: flex;
@@ -66,6 +75,11 @@
     border-radius: 12px 12px 12px 0;
     padding: 15px;
     margin-bottom: 8px;
+
+    &_is-typing {
+      background-color: $message-typing-blue;
+      box-shadow: 0 2px 2px rgba(54, 116, 255, 0.1);
+    }
   }
 
   &__date {
@@ -81,6 +95,17 @@
   &__is_me {
     display: flex;
     flex-direction: row-reverse;
+
+    #{$self}__checked-icon {
+      align-self: flex-end;
+      margin-right: 7px;
+
+      img {
+        color: #999999;
+        width: 13px;
+        height: 13px;
+      }
+    }
 
     #{$self}__content {
       flex-direction: row-reverse;
@@ -101,6 +126,7 @@
 
     #{$self}__block {
       display: flex;
+
       &-content {
         display: flex;
         flex-direction: column-reverse;
@@ -113,9 +139,52 @@
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.02);
       border-radius: 12px 12px 0 12px;
       order: 2;
+
       #{$self}__text {
         color: $black;
       }
+
+      #{$self}_is-typing {
+        background-color: $message-typing-blue;
+        box-shadow: 0 2px 2px rgba(54, 116, 255, 0.1);
+      }
     }
+
+  }
+}
+
+.typing_indicator {
+  will-change: transform;
+  width: auto;
+  border-radius: 50px;
+  padding: 3px;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  animation: 2s bulge infinite ease-out;
+
+  span {
+    height: 15px;
+    width: 15px;
+    background-color: $message-typing-circle;
+    display: block;
+    margin-right: 5px;
+    border-radius: 50%;
+    opacity: 0.4;
+    @for $i from 1 through 3 {
+      &:nth-of-type(#{$i}) {
+        animation: 1s blink infinite ($i * .3333s);
+      }
+    }
+
+    &:nth-of-type(3) {
+      margin-right: 0;
+    }
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
   }
 }

@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ecd57d3-c841-49f5-9606-ee450e10ddd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/helpers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/helpers/validateField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DialogItem/DialogItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DialogItem/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormField/FormField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormField/FormField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/LoginForm/components/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LoginForm/components/LoginForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/LoginForm/containers/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/LoginForm/containers/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/RegistrationForm/components/RegistrationForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RegistrationForm/components/RegistrationForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/RegistrationForm/containers/RegistrationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/RegistrationForm/containers/RegistrationForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/Message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Message/Message.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Message/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,8 @@
       <workItem from="1630512800828" duration="5035000" />
       <workItem from="1630762780583" duration="18147000" />
       <workItem from="1630836233528" duration="1797000" />
-      <workItem from="1630942097001" duration="8563000" />
+      <workItem from="1630942097001" duration="8690000" />
+      <workItem from="1631029626273" duration="3974000" />
     </task>
     <servers />
   </component>
